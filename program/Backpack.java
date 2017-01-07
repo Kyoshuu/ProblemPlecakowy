@@ -19,12 +19,20 @@ public class Backpack {
     }
 
     /**
-     * Fill backpack with items selected using ItemSelectionMethod
+     * Fill backpack with items selected using ItemSelectionMethod.
+     * When backpack already contain items new items will not be added
      * @param allItems items from which few are selected by ItemSelectionMethod
      * @param itemSelectionMethod class defining method which is used to select items
      */
     public void fill(List<Item> allItems, ItemSelectionMethod itemSelectionMethod) {
+        if(!items.isEmpty())
+            return;
+
         items.addAll(itemSelectionMethod.selectItems(allItems, size));
+    }
+
+    public void clear() {
+        items.clear();
     }
 
     public ArrayList<Item> getItems() {

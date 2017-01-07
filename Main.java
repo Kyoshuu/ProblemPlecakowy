@@ -9,8 +9,13 @@ public class Main {
         Program program = new Program(args[0], Integer.parseInt(args[1]));
         // Next it fill backpack with selected algorithm
         program.fillBackpack(new GreatestWeightSelectionMethod());
-        // Then it shows contents of backpack(items), its total weight
-        // and its total value at selected PrintStream
+        // Here program returns backpack which allow to get
+        // item list, its total weight and total value
+        Backpack backpack = program.getBackpack();
+        // If there is need to print somewhere it contents
+        // "program.showBackpack(PrintStream printStream);"
+        // prints backpack(items), its total weight and its
+        // total value to given PrintStream
         program.showBackpack(System.out);
     }
 }

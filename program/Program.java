@@ -10,8 +10,6 @@ public class Program {
     private Backpack backpack;
     private List<Item> allItems;
 
-    ItemSelectionMethod itemSelectionMethod;
-
     /**
      * Constructor instantiates backpack and item list
      *
@@ -30,36 +28,22 @@ public class Program {
      * @param backpackSize maximum number of items backpack can contain
      * @param itemSelectionMethod defines method that program will use to select items for backpack
      */
-    public Program(String pathToItemsData, int backpackSize, ItemSelectionMethod itemSelectionMethod) {
+    public Program(String pathToItemsData, int backpackSize, ItemSelectionMethod itemSelectionMethod) throws NullPointerException {
         this(pathToItemsData, backpackSize);
 
-        this.itemSelectionMethod = itemSelectionMethod;
+        fillBackpack(itemSelectionMethod);
     }
 
     /**
      * Method select items using ItemSelectionMethod and add them to backpack.
      * @param itemSelectionMethod defines method that program will use to select items for backpack
+     * @throws Exception if itemSelectionMethod is null
      */
-    public void fillBackpack(ItemSelectionMethod itemSelectionMethod) {
-        backpack.fill(allItems, itemSelectionMethod);
-    }
-
-    /**
-     * Method select items using previously set ItemSelectionMethod and add them to backpack.
-     * If itemSelectionMethod is not set backpack will not change.
-     * @return if itemSelectionMethod is null method will return false else true
-     */
-    public boolean fillBackpack() {
+    public void fillBackpack(ItemSelectionMethod itemSelectionMethod) throws NullPointerException {
         if(itemSelectionMethod == null)
-            return false;
+            throw new NullPointerException("itemSelectionMethod is null");
 
-        fillBackpack(itemSelectionMethod);
-
-        return true;
-    }
-
-    public void setItemSelectionMethod(ItemSelectionMethod itemSelectionMethod) {
-        this.itemSelectionMethod = itemSelectionMethod;
+        backpack.fill(allItems, itemSelectionMethod);
     }
 
     /**
