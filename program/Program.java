@@ -99,4 +99,6 @@ public class Program {
     public void showBackpack(PrintStream printStream) {
         printStream.println(backpack);
     }
+
+    public Backpack getBackpack() { return backpack; }
 }
